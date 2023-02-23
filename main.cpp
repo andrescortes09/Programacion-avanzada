@@ -1,27 +1,46 @@
-// C++ program to demonstrate the use of rand() to get value
-// in a range of 0 to N
-#include <ctime>
-#include <cstdlib>
 #include <iostream>
+#include <fstream>
+
 using namespace std;
 
-int main()
-{
-	float Vector[9];
-	int O = 0;
-  srand(time(NULL));
-	// This program will create some sequence of random
-	// numbers on every program run within range N
-	for (int i = 0; i < 10; i++){
-		Vector[i] = rand() % 26;
-		cout << Vector[i] << " - ";
-    }
-    for (int i=0; i <= 10; i = i+1){
-        cout << "\nSeleccione La Posición Deseada: \n";
-        cin >> O;
-        cout << Vector + (O - 1) << endl;
-        cout << Vector[O - 1] << endl;
-    }
-	return 0;
-	
+// Estructura de datos para los clientes
+struct Cliente {
+    string nombre;
+    string direccion;
+    string localidad;
+    long int telefono;
+};
+
+int main() {
+    // Crear un puntero a la estructura de datos
+  Cliente *miCliente = new Cliente;
+
+    // Capturar los datos del cliente
+    cout << "\n Ingrese el nombre del cliente: ";
+    getline(cin, miCliente->nombre);
+
+    cout << "\n Ingrese la direccion del cliente: ";
+    getline(cin, miCliente->direccion);
+
+    cout << "\n Ingrese la localidad del cliente: ";
+    getline(cin, miCliente->localidad);
+  
+    cout << "\n Ingrese el telefono del cliente: ";
+    cin >> miCliente->telefono;
+
+    // Abrir el archivo de texto para imprimir la factura
+    ofstream archivoFactura("factura.txt");
+
+    // Imprimir la factura en el archivo de texto
+    archivoFactura << "FACTURA" << endl;
+    archivoFactura << "Nombre: " << miCliente->nombre << endl;
+    archivoFactura << "Direccion: " << miCliente->direccion << endl;
+    archivoFactura << "Localidad: " << miCliente->localidad << endl;
+    archivoFactura << "Telefono: " << miCliente->telefono << endl;
+
+    // Cerrar el archivo de texto y liberar la memoria del puntero
+    archivoFactura.close();
+    delete miCliente;
+  
+    return 0;
 }

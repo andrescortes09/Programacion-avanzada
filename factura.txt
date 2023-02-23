@@ -1,0 +1,5 @@
+FACTURA
+Nombre: Andrés
+Direccion: Cll 22a
+Localidad: Teusa
+Telefono: 312
